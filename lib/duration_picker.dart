@@ -1,5 +1,3 @@
-library duration_picker;
-
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -129,7 +127,7 @@ class DialPainter extends CustomPainter {
         text: '$secondaryUnits$baseUnits',
         style: Theme.of(context)
             .textTheme
-            .headline2!
+            .displayMedium!
             .copyWith(fontSize: size.shortestSide * 0.15),
       ),
       textDirection: TextDirection.ltr,
@@ -144,7 +142,7 @@ class DialPainter extends CustomPainter {
       textAlign: TextAlign.center,
       text: TextSpan(
         text: getBaseUnitString(), //th: ${theta}',
-        style: Theme.of(context).textTheme.bodyText2,
+        style: Theme.of(context).textTheme.bodySmall,
       ),
       textDirection: TextDirection.ltr,
     )..layout();
@@ -543,7 +541,7 @@ class _DialState extends State<_Dial> with SingleTickerProviderStateMixin {
   }
 
   List<TextPainter> _buildBaseUnitLabels(TextTheme textTheme) {
-    final style = textTheme.subtitle1;
+    final style = textTheme.bodyLarge;
 
     var baseUnitMarkerValues = <Duration>[];
 
@@ -603,7 +601,7 @@ class _DialState extends State<_Dial> with SingleTickerProviderStateMixin {
         backgroundColor = Colors.grey[200];
         break;
       case Brightness.dark:
-        backgroundColor = themeData.backgroundColor;
+        backgroundColor = themeData.scaffoldBackgroundColor;
         break;
     }
 
@@ -649,12 +647,12 @@ class DurationPickerDialog extends StatefulWidget {
   ///
   /// [initialTime] must not be null.
   const DurationPickerDialog({
-    Key? key,
+    super.key,
     required this.initialTime,
     this.baseUnit = BaseUnit.minute,
     this.snapToMins = 1.0,
     this.decoration,
-  }) : super(key: key);
+  });
 
   /// The duration initially selected when the dialog is shown.
   final Duration initialTime;
@@ -839,14 +837,14 @@ class DurationPicker extends StatelessWidget {
   final double? height;
 
   const DurationPicker({
-    Key? key,
+    super.key,
     this.duration = Duration.zero,
     required this.onChange,
     this.baseUnit = BaseUnit.minute,
     this.snapToMins,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

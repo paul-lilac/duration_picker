@@ -1,1 +1,4 @@
+analyzer:
+  errors:
+    unnecessary_breaks: ignore
 include: package:lint/analysis_options_package.yaml
